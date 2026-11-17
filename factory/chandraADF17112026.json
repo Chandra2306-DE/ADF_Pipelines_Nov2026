@@ -1,0 +1,15 @@
+{
+	"name": "chandraADF17112026",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f28a35f9-02b5-449c-b241-77c4730ced9c",
+		"tenantId": "ca9fe2b3-ed7b-4d88-a01e-d63701013add"
+	}
+}
