@@ -1,0 +1,24 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline copy data",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/rawcontainer/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/4bda8c46-8996-4ba7-8047-cd8923a9b078/resourceGroups/RG_Chandra_DEV17112026/providers/Microsoft.Storage/storageAccounts/chandraadls202611",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
