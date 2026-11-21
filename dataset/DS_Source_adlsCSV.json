@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Test",
+				"fileName": "circuits.csv",
 				"fileSystem": "sourcecontainer"
 			},
 			"columnDelimiter": ",",
