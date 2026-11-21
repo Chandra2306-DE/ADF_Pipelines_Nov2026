@@ -133,7 +133,8 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "circuits.csv",
+						"fileName": "races.csv",
+						"folderPath": "Test",
 						"fileSystem": "sourcecontainer"
 					},
 					"columnDelimiter": ",",
@@ -198,6 +199,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"folderPath": "rawtest",
 						"fileSystem": "rawcontainer"
 					},
 					"columnDelimiter": ",",
@@ -235,6 +237,36 @@
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipeline copy data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Scheduled_trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pipeline copy data",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2026-11-21T06:52:00",
+						"timeZone": "India Standard Time"
+					}
 				}
 			},
 			"dependsOn": [
