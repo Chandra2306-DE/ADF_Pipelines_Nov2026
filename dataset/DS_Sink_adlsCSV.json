@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"folderPath": "rawtest",
 				"fileSystem": "rawcontainer"
 			},
 			"columnDelimiter": ",",
