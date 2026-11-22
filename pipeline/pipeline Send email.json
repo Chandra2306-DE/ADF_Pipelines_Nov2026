@@ -40,6 +40,104 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "raceId",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "raceId",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "year",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "year",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "round",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "round",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "circuitId",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "circuitId",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "date",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "time",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "time",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "url",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "url",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
