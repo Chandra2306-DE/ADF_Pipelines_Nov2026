@@ -578,6 +578,247 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pipeline copy data')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline Send email')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "raceId",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "raceId",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "round",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "round",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "circuitId",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "circuitId",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "name",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "name",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "date",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "date",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "time",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "time",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "url",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "url",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_Source_adlsCSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_Sink_adlsCSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "SendSuccessEmail",
+						"description": "Pipeline Success Email",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Copy data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "POST",
+							"headers": {},
+							"url": "https://prod-26.northcentralus.logic.azure.com:443/workflows/4bc9ef90f94440d9bf7e5dba97f0e781/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=BuJQIvIXoa2J8_UVTXAY0-SIR86R5iFUdS3YIWQ6aQA",
+							"body": {
+								"pipelineName": "@{pipeline().Pipeline}",
+								"dataFactoryname": "@{pipeline().DataFactory}",
+								"runid": "@{pipeline().RunId}",
+								"status": "Succeeded",
+								"message": "Pipeline execution completed successfully"
+							}
+						}
+					},
+					{
+						"name": "SendFailureEmail",
+						"description": "Pipeline fails Send an Email",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Copy data",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "POST",
+							"headers": {},
+							"url": "https://prod-26.northcentralus.logic.azure.com:443/workflows/4bc9ef90f94440d9bf7e5dba97f0e781/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=BuJQIvIXoa2J8_UVTXAY0-SIR86R5iFUdS3YIWQ6aQA",
+							"body": {
+								"pipelineName": "@{pipeline().Pipeline}",
+								"dataFactoryname": "@{pipeline().DataFactory}",
+								"runid": "@{pipeline().RunId}",
+								"status": "Failed",
+								"message": "Pipeline execution failed. Please check ADF Monitor for error details."
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_Source_adlsCSV')]",
+				"[concat(variables('factoryId'), '/datasets/DS_Sink_adlsCSV')]"
+			]
 		}
 	]
 }
