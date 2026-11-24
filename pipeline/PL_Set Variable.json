@@ -19,7 +19,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vEmployeeName",
+					"variableName": "vEmployeecount",
 					"value": "RAVI"
 				}
 			},
@@ -39,7 +39,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@concat('select * from customers where country = ''', pipeline().parameters.pCountry)",
+							"value": "@concat('select * from customers where country = ''', pipeline().parameters.pCountry,'''')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
