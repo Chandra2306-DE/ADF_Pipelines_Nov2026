@@ -1,5 +1,5 @@
 {
-	"name": "pipeline_Metadata",
+	"name": "pipeline_getMetadata_file",
 	"properties": {
 		"activities": [
 			{
