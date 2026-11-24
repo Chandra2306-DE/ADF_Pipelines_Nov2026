@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_ADLSgen2'"
 		},
+		"FileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer1'"
+		},
 		"AzureDataLakeStorage_ADLSgen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://chandraadls202611.dfs.core.windows.net/"
@@ -18,14 +22,6 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://chandrakeyvaultt.vault.azure.net/"
-		},
-		"EventTrigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/4bda8c46-8996-4ba7-8047-cd8923a9b078/resourceGroups/RG_Chandra_DEV17112026/providers/Microsoft.Storage/storageAccounts/chandraadls202611"
-		},
-		"trigger1_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/4bda8c46-8996-4ba7-8047-cd8923a9b078/resourceGroups/RG_Chandra_DEV17112026/providers/Microsoft.Storage/storageAccounts/chandraadls202611"
 		},
 		"AzureSqlDatabase1_properties_typeProperties_server": {
 			"type": "string",
@@ -38,6 +34,22 @@
 		"AzureSqlDatabase1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "sqladmin"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\Dell\\Downloads\\"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "KRITHVIK"
+		},
+		"EventTrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/4bda8c46-8996-4ba7-8047-cd8923a9b078/resourceGroups/RG_Chandra_DEV17112026/providers/Microsoft.Storage/storageAccounts/chandraadls202611"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/4bda8c46-8996-4ba7-8047-cd8923a9b078/resourceGroups/RG_Chandra_DEV17112026/providers/Microsoft.Storage/storageAccounts/chandraadls202611"
 		},
 		"containerUri": {
 			"type": "string",
@@ -69,6 +81,9 @@
 					"AzureDataLakeStorage_ADLSgen2_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage_ADLSgen2_accountKey')]"
 					},
+					"FileServer1_password": {
+						"value": "[parameters('FileServer1_password')]"
+					},
 					"AzureDataLakeStorage_ADLSgen2_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_ADLSgen2_properties_typeProperties_url')]"
 					},
@@ -84,6 +99,30 @@
 					"AzureSqlDatabase1_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
 					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "chandraADF17112026_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
 					"EventTrigger_properties_typeProperties_scope": {
 						"value": "[parameters('EventTrigger_properties_typeProperties_scope')]"
 					},
@@ -92,7 +131,9 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'chandraADF17112026_ArmTemplate_0')]"
+			]
 		}
 	]
 }
