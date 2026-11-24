@@ -1,0 +1,47 @@
+{
+	"name": "pipeline_Filter Activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Filter Activity",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('Filelist')",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@and(equals(item().type,'file' ),endswith(toLower(item().name),'.csv'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"Filelist": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"Name": "Orders.csv",
+						"type": "file"
+					},
+					{
+						"Name": "Customers.csv",
+						"type": "file"
+					},
+					{
+						"Name": "employee.json",
+						"type": "file"
+					},
+					{
+						"Name": "Products.parquet",
+						"type": "file"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
