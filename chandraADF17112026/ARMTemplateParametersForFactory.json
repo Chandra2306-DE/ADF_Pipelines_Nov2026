@@ -11,11 +11,23 @@
 		"AzureDataLakeStorage_ADLSgen2_properties_typeProperties_url": {
 			"value": "https://chandraadls202611.dfs.core.windows.net/"
 		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://chandrakeyvaultt.vault.azure.net/"
+		},
 		"EventTrigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/4bda8c46-8996-4ba7-8047-cd8923a9b078/resourceGroups/RG_Chandra_DEV17112026/providers/Microsoft.Storage/storageAccounts/chandraadls202611"
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/4bda8c46-8996-4ba7-8047-cd8923a9b078/resourceGroups/RG_Chandra_DEV17112026/providers/Microsoft.Storage/storageAccounts/chandraadls202611"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "ck2026sqlserver.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "ChandraDB"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "sqladmin"
 		}
 	}
 }
