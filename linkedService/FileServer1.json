@@ -1,0 +1,17 @@
+{
+	"name": "FileServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\Dell\\Downloads\\test files",
+			"userId": "KRITHVIK",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiMWIxYTZlMy02YmEyLTQ2YmUtYjc2NC03ODM3OTAwMDQ5MjMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHintegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
