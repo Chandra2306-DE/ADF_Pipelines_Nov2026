@@ -19,7 +19,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vEmployeecount",
+					"variableName": "vEmployeeName",
 					"value": "RAVI"
 				}
 			},
