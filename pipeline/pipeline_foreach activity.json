@@ -39,10 +39,10 @@
 			"EmpList": {
 				"type": "Array",
 				"defaultValue": [
-					"{\"Ravi\"",
+					"Ravi",
 					"Priya",
 					"Kumar",
-					"\"Anil\"}"
+					"Anil"
 				]
 			},
 			"CurrentEmp": {
