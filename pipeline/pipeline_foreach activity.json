@@ -1,0 +1,54 @@
+{
+	"name": "pipeline_foreach activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('EmpList')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CurrentEmp",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"EmpList": {
+				"type": "Array",
+				"defaultValue": [
+					"{\"Ravi\"",
+					"Priya",
+					"Kumar",
+					"\"Anil\"}"
+				]
+			},
+			"CurrentEmp": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
