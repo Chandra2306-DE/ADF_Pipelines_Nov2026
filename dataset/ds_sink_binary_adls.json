@@ -1,0 +1,18 @@
+{
+	"name": "ds_sink_binary_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_ADLSgen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "rawtest",
+				"fileSystem": "rawcontainer"
+			}
+		}
+	}
+}
