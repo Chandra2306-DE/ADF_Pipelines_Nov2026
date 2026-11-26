@@ -21,9 +21,7 @@
 					},
 					"fieldList": [
 						"childItems",
-						"exists",
-						"itemType",
-						"itemName"
+						"exists"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
@@ -53,7 +51,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@equals(item().type,'file' )",
+						"value": "@equals(item().type,'File' )",
 						"type": "Expression"
 					}
 				}
